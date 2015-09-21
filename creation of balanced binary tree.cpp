@@ -22,18 +22,21 @@ node * create_tree(int arr[],int n)
 	for(int i=1;i<n;i=i+2)
 	{
 		node *temp=new node();
+		if(i<n){
 		temp->data=arr[i];
 		temp->left=NULL;
 		temp->right=NULL;
 	    q.front()->left=temp;
 	    q.push(temp);
 	    temp=new node();
-	    if(i<n){
+	    }
+	    if(i+1<n){
 	    temp->data=arr[i+1];
 	    temp->left=NULL;
 	    temp->right=NULL;
 	    q.front()->right=temp;
-	    q.push(temp);}
+	    q.push(temp);
+	    }
 	    q.pop();
 	}
 	/*while(!q.empty())
