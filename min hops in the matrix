@@ -1,0 +1,42 @@
+/* This code illustrates the minimum hops required in  a matrix to reach the destination 
+*/
+#include<bits/stdc++.h>
+using namespace std;
+int f1(int matrix[64][64], int m, int n,int x,int y,int count){
+	if(matrix[x][y]==0)
+		return 0;
+	if(x>=m || y>=n)
+		return 0;
+	if(x==m-1 && y==n-1)
+		return count;
+	int k1=f1(matrix,m,n,x+matrix[x][y],y,count+1);
+	int k2=f1(matrix,m,n,x,y+matrix[x][y],count+1);
+	if(k1==0 && k2==0)
+		return 0;
+	if(k1==0)
+	{
+		return k2;
+	}
+	else 
+		return k1;
+	}
+int minHops(int matrix[64][64], int m, int n){	
+	return f1(matrix,m,n,0,0,0);
+}
+int main() {
+	// your code goes here
+	//string s1,s2;
+	//cin>>s1>>s2;
+	//cout<<endl;
+	int matrix[64][64]={0};
+	int m,n;
+	cin>>m>>n;
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+			cin>>matrix[i][j];
+		}
+	}
+	//cout<<find_unique(s2);
+	cout<<minHops(matrix,m,n);
+	return 0;
+}
